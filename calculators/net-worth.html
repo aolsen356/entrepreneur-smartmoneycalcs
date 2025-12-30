@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Net Worth Calculator - Track Your Financial Health</title>
+    <meta name="description" content="Free net worth calculator. Add up your assets and liabilities to see your true financial picture. Track your progress over time.">
+    <meta name="keywords" content="net worth calculator, financial health calculator, assets vs liabilities, wealth calculator, personal finance tracker">
+    <link rel="canonical" href="https://smartmoneycalcs.pages.dev/calculators/net-worth.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Free Net Worth Calculator">
+    <meta property="og:description" content="See your true financial picture. Track assets, liabilities, and net worth.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartmoneycalcs.pages.dev/calculators/net-worth.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#0284c7',
+                        accent: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-emerald-50 to-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../" class="text-2xl font-bold text-primary">SmartMoney Calcs</a>
+            <div class="space-x-6">
+                <a href="../#calculators" class="text-gray-600 hover:text-primary">Calculators</a>
+                <a href="net-worth.html" class="text-primary font-medium">Net Worth</a>
+                <a href="debt-payoff.html" class="text-gray-600 hover:text-primary">Debt Payoff</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Net Worth Calculator</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Know your true financial position. Add your assets and liabilities to calculate your net worth.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div class="space-y-6">
+                <!-- Assets Section -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-green-600">Assets (What You Own)</h2>
+                        <div class="text-2xl font-bold text-green-600" id="totalAssetsDisplay">$0</div>
+                    </div>
+
+                    <!-- Cash & Savings -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Cash & Savings</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Checking Accounts</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="checking" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Savings Accounts</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="savings" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Emergency Fund</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="emergency" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Cash on Hand</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="cash" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investments -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Investments</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">401(k) / 403(b)</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="401k" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">IRA / Roth IRA</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="ira" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Brokerage Accounts</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="brokerage" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Cryptocurrency</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="crypto" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Property</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Primary Home</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="home" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Other Real Estate</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="realestate" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Vehicles</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="vehicles" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Assets -->
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Other Assets</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Business Value</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="business" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Other (Jewelry, etc.)</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="assets" data-type="other" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary asset-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Liabilities Section -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-red-600">Liabilities (What You Owe)</h2>
+                        <div class="text-2xl font-bold text-red-600" id="totalLiabilitiesDisplay">$0</div>
+                    </div>
+
+                    <!-- Mortgages -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Mortgages & Loans</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Primary Mortgage</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="mortgage" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Other Mortgages</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="othermortgage" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Auto Loans</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="autoloan" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Personal Loans</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="personalloan" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Loans -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Student Debt</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Student Loans</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="studentloan" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Credit Cards -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Credit Cards</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Credit Card Debt</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="creditcard" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Liabilities -->
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-700 mb-3 uppercase tracking-wide">Other Liabilities</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Medical Debt</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="medical" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <label class="w-40 text-sm text-gray-600">Other Debt</label>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" data-category="liabilities" data-type="otherdebt" value="0" min="0"
+                                        class="w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 liability-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="space-y-6">
+                <!-- Net Worth Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-semibold mb-6">Your Net Worth</h2>
+
+                    <!-- Main Result -->
+                    <div class="text-center py-8 border-2 border-dashed rounded-xl mb-6" id="netWorthBox">
+                        <div class="text-5xl font-bold mb-2" id="netWorthDisplay">$0</div>
+                        <div class="text-gray-600" id="netWorthLabel">Enter your assets and liabilities</div>
+                    </div>
+
+                    <!-- Breakdown -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600" id="summaryAssets">$0</div>
+                            <div class="text-sm text-gray-600">Total Assets</div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-red-600" id="summaryLiabilities">$0</div>
+                            <div class="text-sm text-gray-600">Total Liabilities</div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Breakdown Bar -->
+                    <div class="mb-6">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="text-green-600 font-medium">Assets</span>
+                            <span class="text-red-600 font-medium">Liabilities</span>
+                        </div>
+                        <div class="h-6 bg-gray-200 rounded-full overflow-hidden flex">
+                            <div class="bg-green-500 transition-all duration-500" id="assetsBar" style="width: 50%"></div>
+                            <div class="bg-red-500 transition-all duration-500" id="liabilitiesBar" style="width: 50%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span id="assetsPercent">50%</span>
+                            <span id="liabilitiesPercent">50%</span>
+                        </div>
+                    </div>
+
+                    <!-- Debt-to-Asset Ratio -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Debt-to-Asset Ratio</span>
+                            <span class="text-xl font-bold" id="debtRatio">0%</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1" id="debtRatioAdvice">A ratio below 50% is generally considered healthy.</p>
+                    </div>
+                </div>
+
+                <!-- Asset Breakdown -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold mb-4">Asset Breakdown</h3>
+                    <div class="space-y-3" id="assetBreakdown">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                                <span class="text-gray-600">Cash & Savings</span>
+                            </div>
+                            <span class="font-medium" id="cashTotal">$0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-purple-500 mr-2"></div>
+                                <span class="text-gray-600">Investments</span>
+                            </div>
+                            <span class="font-medium" id="investmentsTotal">$0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                                <span class="text-gray-600">Property</span>
+                            </div>
+                            <span class="font-medium" id="propertyTotal">$0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-orange-500 mr-2"></div>
+                                <span class="text-gray-600">Other Assets</span>
+                            </div>
+                            <span class="font-medium" id="otherAssetsTotal">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Health Tips -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold mb-4">Your Financial Health</h3>
+                    <div id="healthTips" class="space-y-3">
+                        <div class="p-3 bg-blue-50 rounded-lg text-sm text-blue-800">
+                            Enter your financial information to get personalized insights.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Helpful Resources -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold mb-4">Improve Your Net Worth</h3>
+                    <div class="space-y-3">
+                        <a href="debt-payoff.html" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                            <div class="font-medium text-gray-900">Debt Payoff Calculator</div>
+                            <div class="text-sm text-gray-600">Create a plan to eliminate your debt faster</div>
+                        </a>
+                        <a href="emergency-fund.html" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                            <div class="font-medium text-gray-900">Emergency Fund Calculator</div>
+                            <div class="text-sm text-gray-600">Build your financial safety net</div>
+                        </a>
+                        <a href="savings-goal.html" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                            <div class="font-medium text-gray-900">Savings Goal Calculator</div>
+                            <div class="text-sm text-gray-600">Plan for major purchases and investments</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Content -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Understanding Your Net Worth</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-primary mb-4">What Is Net Worth?</h3>
+                    <p class="text-gray-600 mb-4">
+                        Your net worth is a simple equation: <strong>Assets - Liabilities = Net Worth</strong>.
+                        It represents your financial position at a single point in time.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <strong>Assets</strong> = Everything you own (cash, investments, property)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <strong>Liabilities</strong> = Everything you owe (mortgages, loans, credit cards)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-secondary mb-4">Why Track Net Worth?</h3>
+                    <p class="text-gray-600 mb-4">
+                        Tracking your net worth over time is one of the best ways to measure your financial progress.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            See the big picture of your finances
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Track progress toward financial goals
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Make informed decisions about spending
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Plan for retirement more effectively
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benchmarks Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Net Worth Benchmarks by Age</h2>
+            <div class="bg-white p-6 rounded-xl shadow-sm overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="py-3 px-4 font-semibold text-gray-700">Age</th>
+                            <th class="py-3 px-4 font-semibold text-gray-700">Average Net Worth</th>
+                            <th class="py-3 px-4 font-semibold text-gray-700">Median Net Worth</th>
+                            <th class="py-3 px-4 font-semibold text-gray-700">Target (1x-2x Salary)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="py-3 px-4">Under 35</td>
+                            <td class="py-3 px-4">$76,300</td>
+                            <td class="py-3 px-4">$13,900</td>
+                            <td class="py-3 px-4">0.5x - 1x salary</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">35-44</td>
+                            <td class="py-3 px-4">$436,200</td>
+                            <td class="py-3 px-4">$91,300</td>
+                            <td class="py-3 px-4">1x - 2x salary</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">45-54</td>
+                            <td class="py-3 px-4">$833,200</td>
+                            <td class="py-3 px-4">$168,600</td>
+                            <td class="py-3 px-4">3x - 4x salary</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">55-64</td>
+                            <td class="py-3 px-4">$1,175,900</td>
+                            <td class="py-3 px-4">$212,500</td>
+                            <td class="py-3 px-4">5x - 7x salary</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">65-74</td>
+                            <td class="py-3 px-4">$1,217,700</td>
+                            <td class="py-3 px-4">$266,400</td>
+                            <td class="py-3 px-4">8x - 10x salary</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-xs text-gray-500 mt-4">Source: Federal Reserve Survey of Consumer Finances (2022). Note: Average is skewed by high earners; median is more representative of typical households.</p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">Is a negative net worth bad?</h3>
+                    <p class="text-gray-600">
+                        Not necessarily. Many young adults have negative net worth due to student loans or mortgages.
+                        What matters is the trajectory - are you moving toward positive territory over time?
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">Should I include my home in net worth?</h3>
+                    <p class="text-gray-600">
+                        Yes, but be conservative with the value. Use recent comparable sales in your area, not Zillow estimates.
+                        Your home equity (value minus mortgage) contributes to net worth but isn't liquid.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">How often should I calculate my net worth?</h3>
+                    <p class="text-gray-600">
+                        Most financial experts recommend calculating your net worth quarterly or at least annually.
+                        This helps you track progress without obsessing over short-term market fluctuations.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">What's a good debt-to-asset ratio?</h3>
+                    <p class="text-gray-600">
+                        Generally, a debt-to-asset ratio below 50% is considered healthy. Under 30% is excellent.
+                        Higher ratios may indicate over-leverage, though context matters (e.g., a new mortgage).
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">SmartMoney Calcs</h4>
+                    <p class="text-sm">Free financial calculators to help you make smarter money decisions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Calculators</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="net-worth.html" class="hover:text-white">Net Worth Calculator</a></li>
+                        <li><a href="debt-payoff.html" class="hover:text-white">Debt Payoff Calculator</a></li>
+                        <li><a href="emergency-fund.html" class="hover:text-white">Emergency Fund Calculator</a></li>
+                        <li><a href="savings-goal.html" class="hover:text-white">Savings Goal Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Disclaimer</h4>
+                    <p class="text-sm">This calculator is for informational purposes only. Consult a financial advisor for personalized guidance.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 SmartMoney Calcs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/net-worth-calculator.js"></script>
+</body>
+</html>

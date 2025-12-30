@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Budget Calculator - Manage Irregular Income</title>
+    <meta name="description" content="Free freelancer budget calculator for irregular income. Plan taxes, set savings goals, and manage expenses with variable monthly earnings.">
+    <meta name="keywords" content="freelancer budget calculator, irregular income budget, self-employed budget planner, freelance tax calculator, variable income budget">
+    <link rel="canonical" href="https://smartmoneycalcs.pages.dev/calculators/freelancer-budget.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Freelancer Budget Calculator - Manage Irregular Income">
+    <meta property="og:description" content="Plan your freelance finances with confidence. Handle taxes, savings, and expenses with variable income.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartmoneycalcs.pages.dev/calculators/freelancer-budget.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#0284c7',
+                        accent: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-violet-50 to-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../" class="text-2xl font-bold text-primary">SmartMoney Calcs</a>
+            <div class="space-x-6">
+                <a href="../#calculators" class="text-gray-600 hover:text-primary">Calculators</a>
+                <a href="debt-payoff.html" class="text-gray-600 hover:text-primary">Debt Payoff</a>
+                <a href="emergency-fund.html" class="text-gray-600 hover:text-primary">Emergency Fund</a>
+                <a href="freelancer-budget.html" class="text-accent font-medium">Freelancer Budget</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Freelancer Budget Calculator</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Manage irregular income like a pro. See exactly how much to set aside for taxes, savings, and expenses each month.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div class="space-y-6">
+                <!-- Income Section -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-semibold mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </span>
+                        Monthly Income
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                This Month's Gross Income
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                <input type="number" id="monthlyIncome" value="5000" min="0" step="100"
+                                    class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Before taxes and expenses</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Average Monthly Income (Optional)
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                <input type="number" id="averageIncome" value="4500" min="0" step="100"
+                                    class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Helps plan for lean months</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tax Settings -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-semibold mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path>
+                            </svg>
+                        </span>
+                        Tax Settings
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Estimated Tax Rate
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="taxRate" value="30" min="0" max="50" step="1"
+                                    class="w-full pr-8 pl-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">25-30% is typical for most freelancers</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="setTaxRate(25)" class="py-2 px-3 border rounded-lg text-sm hover:bg-gray-50 transition">25% (Lower bracket)</button>
+                            <button onclick="setTaxRate(30)" class="py-2 px-3 border rounded-lg text-sm hover:bg-gray-50 transition">30% (Average)</button>
+                            <button onclick="setTaxRate(35)" class="py-2 px-3 border rounded-lg text-sm hover:bg-gray-50 transition">35% (Higher earner)</button>
+                            <button onclick="setTaxRate(40)" class="py-2 px-3 border rounded-lg text-sm hover:bg-gray-50 transition">40% (High earner)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fixed Expenses -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-semibold mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                        </span>
+                        Fixed Monthly Expenses
+                    </h2>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm text-gray-700">Rent/Mortgage</label>
+                            <div class="relative w-32">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                <input type="number" id="rent" value="1500" min="0" step="50"
+                                    class="w-full pl-6 pr-2 py-2 text-sm border rounded focus:ring-2 focus:ring-accent focus:border-accent">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm text-gray-700">Utilities</label>
+                            <div class="relative w-32">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                <input type="number" id="utilities" value="200" min="0" step="10"
+                                    class="w-full pl-6 pr-2 py-2 text-sm border rounded focus:ring-2 focus:ring-accent focus:border-accent">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm text-gray-700">Insurance (Health, etc.)</label>
+                            <div class="relative w-32">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                <input type="number" id="insurance" value="400" min="0" step="25"
+                                    class="w-full pl-6 pr-2 py-2 text-sm border rounded focus:ring-2 focus:ring-accent focus:border-accent">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm text-gray-700">Subscriptions/Software</label>
+                            <div class="relative w-32">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                <input type="number" id="subscriptions" value="150" min="0" step="10"
+                                    class="w-full pl-6 pr-2 py-2 text-sm border rounded focus:ring-2 focus:ring-accent focus:border-accent">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm text-gray-700">Other Fixed Costs</label>
+                            <div class="relative w-32">
+                                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                <input type="number" id="otherFixed" value="100" min="0" step="25"
+                                    class="w-full pl-6 pr-2 py-2 text-sm border rounded focus:ring-2 focus:ring-accent focus:border-accent">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Savings Goals -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-semibold mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </span>
+                        Savings Goals
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Emergency Fund Target (% of leftover)
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="emergencyPercent" value="20" min="0" max="50" step="5"
+                                    class="w-full pr-8 pl-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Retirement Savings (% of leftover)
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="retirementPercent" value="15" min="0" max="50" step="5"
+                                    class="w-full pr-8 pl-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="calculateBtn" onclick="calculateBudget()" class="w-full py-4 bg-accent text-white rounded-lg font-semibold text-lg hover:bg-violet-700 transition">
+                    Calculate My Budget
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div class="space-y-6">
+                <div id="resultsSection" class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-semibold mb-6">Your Monthly Budget Breakdown</h2>
+
+                    <div id="noResults" class="text-center py-12 text-gray-500">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        <p>Enter your income and expenses, then click "Calculate" to see your personalized budget</p>
+                    </div>
+
+                    <div id="resultsContent" class="hidden">
+                        <!-- Income Summary -->
+                        <div class="mb-6 pb-6 border-b">
+                            <div class="flex justify-between items-center text-lg">
+                                <span class="font-medium">Gross Income</span>
+                                <span class="text-2xl font-bold text-gray-900" id="displayIncome">$5,000</span>
+                            </div>
+                        </div>
+
+                        <!-- Budget Allocation -->
+                        <div class="space-y-4 mb-6">
+                            <!-- Taxes -->
+                            <div class="flex justify-between items-center py-3 px-4 bg-red-50 rounded-lg">
+                                <div>
+                                    <span class="font-medium text-red-800">Set Aside for Taxes</span>
+                                    <span class="text-sm text-red-600 block" id="taxPercent">30%</span>
+                                </div>
+                                <span class="text-xl font-bold text-red-700" id="taxAmount">$1,500</span>
+                            </div>
+
+                            <!-- Fixed Expenses -->
+                            <div class="flex justify-between items-center py-3 px-4 bg-blue-50 rounded-lg">
+                                <div>
+                                    <span class="font-medium text-blue-800">Fixed Expenses</span>
+                                    <span class="text-sm text-blue-600 block">Rent, utilities, insurance, etc.</span>
+                                </div>
+                                <span class="text-xl font-bold text-blue-700" id="fixedAmount">$2,350</span>
+                            </div>
+
+                            <!-- Emergency Fund -->
+                            <div class="flex justify-between items-center py-3 px-4 bg-emerald-50 rounded-lg">
+                                <div>
+                                    <span class="font-medium text-emerald-800">Emergency Fund</span>
+                                    <span class="text-sm text-emerald-600 block" id="emergencyPercentDisplay">20% of remaining</span>
+                                </div>
+                                <span class="text-xl font-bold text-emerald-700" id="emergencyAmount">$230</span>
+                            </div>
+
+                            <!-- Retirement -->
+                            <div class="flex justify-between items-center py-3 px-4 bg-purple-50 rounded-lg">
+                                <div>
+                                    <span class="font-medium text-purple-800">Retirement Savings</span>
+                                    <span class="text-sm text-purple-600 block" id="retirementPercentDisplay">15% of remaining</span>
+                                </div>
+                                <span class="text-xl font-bold text-purple-700" id="retirementAmount">$173</span>
+                            </div>
+                        </div>
+
+                        <!-- Remaining -->
+                        <div class="pt-4 border-t">
+                            <div class="flex justify-between items-center text-lg">
+                                <span class="font-medium">Flexible Spending Money</span>
+                                <span class="text-2xl font-bold text-accent" id="remainingAmount">$747</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">For groceries, entertainment, dining out, and variable expenses</p>
+                        </div>
+
+                        <!-- Visual Breakdown -->
+                        <div class="mt-6">
+                            <h3 class="font-medium mb-3">Visual Breakdown</h3>
+                            <div class="h-8 rounded-full overflow-hidden flex">
+                                <div id="taxBar" class="bg-red-400" style="width: 30%"></div>
+                                <div id="fixedBar" class="bg-blue-400" style="width: 47%"></div>
+                                <div id="emergencyBar" class="bg-emerald-400" style="width: 5%"></div>
+                                <div id="retirementBar" class="bg-purple-400" style="width: 3%"></div>
+                                <div id="flexibleBar" class="bg-violet-400" style="width: 15%"></div>
+                            </div>
+                            <div class="flex flex-wrap gap-4 mt-3 text-sm">
+                                <span class="flex items-center"><span class="w-3 h-3 bg-red-400 rounded mr-1"></span>Taxes</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-blue-400 rounded mr-1"></span>Fixed</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-emerald-400 rounded mr-1"></span>Emergency</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-purple-400 rounded mr-1"></span>Retirement</span>
+                                <span class="flex items-center"><span class="w-3 h-3 bg-violet-400 rounded mr-1"></span>Flexible</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights Box -->
+                <div id="insightsBox" class="bg-white p-6 rounded-xl shadow-sm hidden">
+                    <h3 class="font-semibold mb-4 flex items-center">
+                        <svg class="w-5 h-5 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        Insights
+                    </h3>
+                    <div id="insightsList" class="space-y-3">
+                        <!-- Insights will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Good Month Alert -->
+                <div id="goodMonthAlert" class="bg-green-50 border border-green-200 p-4 rounded-xl hidden">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-green-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-green-800">Good Month!</h4>
+                            <p class="text-sm text-green-700" id="goodMonthMessage">Your income is above average. Consider putting the extra into savings!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lean Month Alert -->
+                <div id="leanMonthAlert" class="bg-amber-50 border border-amber-200 p-4 rounded-xl hidden">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-amber-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-amber-800">Lean Month</h4>
+                            <p class="text-sm text-amber-700" id="leanMonthMessage">Income is below average. Consider reducing flexible spending this month.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold mb-4">Helpful Resources</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                            <div class="font-medium text-gray-900">High-Yield Savings Accounts</div>
+                            <div class="text-sm text-gray-600">Compare rates for your tax and emergency funds</div>
+                        </a>
+                        <a href="emergency-fund.html" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                            <div class="font-medium text-gray-900">Emergency Fund Calculator</div>
+                            <div class="text-sm text-gray-600">Figure out exactly how much you need saved</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Content -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Freelancer Financial Guide</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-red-700 mb-4">Understanding Self-Employment Taxes</h3>
+                    <p class="text-gray-600 mb-4">
+                        As a freelancer, you pay both the employee and employer portion of Social Security and Medicare taxes (15.3%), plus your regular income tax.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Self-employment tax: 15.3%
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Federal income tax: 10-37%
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            State tax: 0-13% (varies by state)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-amber-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                            Pay quarterly estimated taxes to avoid penalties
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-emerald-700 mb-4">The 50/30/20 Rule for Freelancers</h3>
+                    <p class="text-gray-600 mb-4">
+                        Adapt the classic budgeting rule for irregular income. After setting aside taxes:
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="font-bold text-blue-700">50%</span>
+                            </span>
+                            <span><strong>Needs:</strong> Rent, utilities, insurance, minimum debt payments</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="font-bold text-purple-700">30%</span>
+                            </span>
+                            <span><strong>Wants:</strong> Entertainment, dining, hobbies, upgrades</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="font-bold text-emerald-700">20%</span>
+                            </span>
+                            <span><strong>Savings:</strong> Emergency fund, retirement, extra debt payments</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">How much should freelancers save for taxes?</h3>
+                    <p class="text-gray-600">
+                        A safe rule of thumb is 25-30% of your gross income. If you're a higher earner (over $100k/year) or live in a high-tax state, consider setting aside 35-40%. It's better to overestimate and get a refund than face a surprise tax bill.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">How do I handle months with very low income?</h3>
+                    <p class="text-gray-600">
+                        This is why emergency funds are crucial for freelancers. Aim for 6-12 months of expenses saved. In lean months, reduce your savings contributions temporarily but still set aside taxes on whatever you earn.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">Should I open separate bank accounts?</h3>
+                    <p class="text-gray-600">
+                        Yes! Most successful freelancers use multiple accounts: one for taxes (don't touch this money), one for operating expenses, and one for personal spending. This makes tracking easier and prevents accidentally spending your tax money.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">What retirement accounts can freelancers use?</h3>
+                    <p class="text-gray-600">
+                        Freelancers have excellent retirement options: Solo 401(k) (up to $66,000/year in 2024), SEP-IRA (up to 25% of net self-employment income), or a Simple IRA. These can significantly reduce your tax burden while building wealth.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">SmartMoney Calcs</h4>
+                    <p class="text-sm">Free financial calculators to help you make smarter money decisions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Calculators</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="debt-payoff.html" class="hover:text-white">Debt Payoff Calculator</a></li>
+                        <li><a href="emergency-fund.html" class="hover:text-white">Emergency Fund Calculator</a></li>
+                        <li><a href="freelancer-budget.html" class="hover:text-white">Freelancer Budget Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Disclaimer</h4>
+                    <p class="text-sm">This calculator is for informational purposes only. Consult a tax professional or financial advisor for personalized guidance.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 SmartMoney Calcs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/freelancer-calculator.js"></script>
+</body>
+</html>

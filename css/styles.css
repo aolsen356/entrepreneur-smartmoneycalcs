@@ -1,0 +1,106 @@
+/* SmartMoney Calcs - Custom Styles */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Form inputs */
+input:focus {
+    outline: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Debt entry animations */
+.debt-entry {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button hover effects */
+button {
+    transition: all 0.2s ease;
+}
+
+/* Card hover effect */
+.calculator-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Strategy button active state */
+.strategy-btn.active {
+    border-color: #059669;
+    background-color: rgba(5, 150, 105, 0.05);
+    color: #059669;
+}
+
+/* Results animation */
+#resultsContent {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Payoff schedule item animation */
+#payoffSchedule > div {
+    animation: slideIn 0.3s ease-out;
+    animation-fill-mode: both;
+}
+
+#payoffSchedule > div:nth-child(1) { animation-delay: 0.1s; }
+#payoffSchedule > div:nth-child(2) { animation-delay: 0.2s; }
+#payoffSchedule > div:nth-child(3) { animation-delay: 0.3s; }
+#payoffSchedule > div:nth-child(4) { animation-delay: 0.4s; }
+#payoffSchedule > div:nth-child(5) { animation-delay: 0.5s; }
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+    .grid-cols-3 {
+        grid-template-columns: 1fr;
+    }
+
+    nav .space-x-6 {
+        display: none;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    header, footer, #addDebtBtn, #calculateBtn, .strategy-btn {
+        display: none !important;
+    }
+
+    #resultsContent {
+        page-break-inside: avoid;
+    }
+}

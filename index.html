@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Financial Calculators - Plan Your Financial Future</title>
+    <meta name="description" content="Free financial calculators to help you pay off debt, build an emergency fund, and achieve your money goals. No signup required.">
+    <meta name="keywords" content="debt payoff calculator, emergency fund calculator, financial planning tools, budget calculator">
+    <link rel="canonical" href="https://smartmoneycalcs.pages.dev/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Free Financial Calculators">
+    <meta property="og:description" content="Plan your financial future with our free calculators. Debt payoff, emergency fund, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartmoneycalcs.pages.dev/">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#0284c7',
+                        accent: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-emerald-50 to-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-primary">SmartMoney Calcs</a>
+            <div class="space-x-6">
+                <a href="#calculators" class="text-gray-600 hover:text-primary">Calculators</a>
+                <a href="calculators/debt-payoff.html" class="text-gray-600 hover:text-primary">Debt Payoff</a>
+                <a href="calculators/emergency-fund.html" class="text-gray-600 hover:text-primary">Emergency Fund</a>
+                <a href="calculators/savings-goal.html" class="text-gray-600 hover:text-primary">Savings Goal</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-4 py-16 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Take Control of Your Financial Future
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Free calculators to help you pay off debt faster, build emergency savings, and make smarter money decisions. No signup. No ads. Just results.
+        </p>
+        <a href="calculators/debt-payoff.html" class="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-emerald-700 transition inline-block">
+            Try Our Debt Payoff Calculator
+        </a>
+    </section>
+
+    <!-- Calculator Cards -->
+    <section class="max-w-6xl mx-auto px-4 py-12" id="calculators">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Our Calculators</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Debt Payoff Calculator -->
+            <a href="calculators/debt-payoff.html" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition block">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Debt Payoff Calculator</h3>
+                <p class="text-gray-600">See exactly when you'll be debt-free. Compare payoff strategies and save money on interest.</p>
+                <span class="text-primary font-medium mt-4 inline-block">Calculate Now &rarr;</span>
+            </a>
+
+            <!-- Emergency Fund Calculator -->
+            <a href="calculators/emergency-fund.html" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition block">
+                <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Emergency Fund Calculator</h3>
+                <p class="text-gray-600">Find out how much you need to save and create a plan to build your safety net.</p>
+                <span class="text-secondary font-medium mt-4 inline-block">Calculate Now &rarr;</span>
+            </a>
+
+            <!-- Freelancer Budget Calculator -->
+            <a href="calculators/freelancer-budget.html" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition block">
+                <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Freelancer Budget Calculator</h3>
+                <p class="text-gray-600">Manage irregular income like a pro. Plan for taxes, savings, and expenses.</p>
+                <span class="text-accent font-medium mt-4 inline-block">Calculate Now &rarr;</span>
+            </a>
+
+            <!-- Savings Goal Calculator -->
+            <a href="calculators/savings-goal.html" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition block">
+                <div class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Savings Goal Calculator</h3>
+                <p class="text-gray-600">Plan for any goal - vacation, house, car. See how much to save monthly.</p>
+                <span class="text-orange-500 font-medium mt-4 inline-block">Calculate Now &rarr;</span>
+            </a>
+
+            <!-- Net Worth Calculator -->
+            <a href="calculators/net-worth.html" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition block">
+                <div class="w-12 h-12 bg-teal-500/10 rounded-full flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Net Worth Calculator</h3>
+                <p class="text-gray-600">Track your total financial picture. See assets vs liabilities at a glance.</p>
+                <span class="text-teal-500 font-medium mt-4 inline-block">Calculate Now &rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Why Use Our Calculators -->
+    <section class="bg-white py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Why Use Our Calculators?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">100% Free</h3>
+                    <p class="text-gray-600">No hidden fees, no credit card required. Just useful tools.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Private</h3>
+                    <p class="text-gray-600">All calculations happen in your browser. We never see your data.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Instant Results</h3>
+                    <p class="text-gray-600">Get answers immediately. No waiting, no email required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="max-w-6xl mx-auto px-4 py-16 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Start Your Debt-Free Journey</h2>
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            The average American has over $6,000 in credit card debt. Our calculator helps you create a plan to pay it off faster.
+        </p>
+        <a href="calculators/debt-payoff.html" class="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-emerald-700 transition inline-block">
+            Calculate Your Payoff Date
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">SmartMoney Calcs</h4>
+                    <p class="text-sm">Free financial calculators to help you make smarter money decisions. Built for real people, not financial experts.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Calculators</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="calculators/debt-payoff.html" class="hover:text-white">Debt Payoff Calculator</a></li>
+                        <li><a href="calculators/emergency-fund.html" class="hover:text-white">Emergency Fund Calculator</a></li>
+                        <li><a href="calculators/freelancer-budget.html" class="hover:text-white">Freelancer Budget Calculator</a></li>
+                        <li><a href="calculators/savings-goal.html" class="hover:text-white">Savings Goal Calculator</a></li>
+                        <li><a href="calculators/net-worth.html" class="hover:text-white">Net Worth Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Disclaimer</h4>
+                    <p class="text-sm">These calculators are for informational purposes only and should not be considered financial advice. Consult a qualified financial advisor for personalized guidance.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 SmartMoney Calcs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

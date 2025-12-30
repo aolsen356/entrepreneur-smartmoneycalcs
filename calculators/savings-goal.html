@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Savings Goal Calculator - Plan Your Financial Goals</title>
+    <meta name="description" content="Free savings goal calculator. Plan for a house down payment, vacation, emergency fund, or any goal. See exactly how much to save monthly and when you'll reach your target.">
+    <meta name="keywords" content="savings goal calculator, how much to save, savings plan calculator, house down payment calculator, vacation savings calculator">
+    <link rel="canonical" href="https://smartmoneycalcs.pages.dev/calculators/savings-goal.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Free Savings Goal Calculator">
+    <meta property="og:description" content="Plan your financial goals. See how much to save monthly and when you'll reach your target.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartmoneycalcs.pages.dev/calculators/savings-goal.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#0284c7',
+                        accent: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-emerald-50 to-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../" class="text-2xl font-bold text-primary">SmartMoney Calcs</a>
+            <div class="space-x-6">
+                <a href="../#calculators" class="text-gray-600 hover:text-primary">Calculators</a>
+                <a href="debt-payoff.html" class="text-gray-600 hover:text-primary">Debt Payoff</a>
+                <a href="emergency-fund.html" class="text-gray-600 hover:text-primary">Emergency Fund</a>
+                <a href="savings-goal.html" class="text-primary font-medium">Savings Goal</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Savings Goal Calculator</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Plan for any financial goal. See exactly how much to save each month and when you'll reach your target.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-xl font-semibold mb-6">Your Savings Goal</h2>
+
+                <!-- Goal Type Selection -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">What are you saving for?</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="goal-type-btn py-3 px-4 border-2 border-primary bg-primary/5 rounded-lg text-primary font-medium text-sm active" data-goal="custom">
+                            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Custom Goal
+                        </button>
+                        <button class="goal-type-btn py-3 px-4 border-2 border-gray-300 rounded-lg text-gray-600 font-medium text-sm" data-goal="house">
+                            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            House Down Payment
+                        </button>
+                        <button class="goal-type-btn py-3 px-4 border-2 border-gray-300 rounded-lg text-gray-600 font-medium text-sm" data-goal="vacation">
+                            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Vacation
+                        </button>
+                        <button class="goal-type-btn py-3 px-4 border-2 border-gray-300 rounded-lg text-gray-600 font-medium text-sm" data-goal="car">
+                            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8m-8 5h8m-4-9a9 9 0 110 18 9 9 0 010-18zm-5 9h.01M19 12h.01"></path>
+                            </svg>
+                            New Car
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Goal Name -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Goal Name</label>
+                    <input type="text" id="goalName" placeholder="e.g., Dream Vacation, New Car, Emergency Fund"
+                        class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                </div>
+
+                <!-- Goal Amount -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Goal Amount</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                        <input type="number" id="goalAmount" value="10000" min="100" step="100"
+                            class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                </div>
+
+                <!-- Current Savings -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Current Savings (optional)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                        <input type="number" id="currentSavings" value="0" min="0" step="100"
+                            class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">How much have you already saved toward this goal?</p>
+                </div>
+
+                <!-- Calculation Mode -->
+                <div class="mb-6 pt-4 border-t">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">How do you want to calculate?</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button id="byDateBtn" class="calc-mode-btn py-3 px-4 border-2 border-primary bg-primary/5 rounded-lg text-primary font-medium active">
+                            I have a deadline
+                            <span class="block text-xs font-normal">Tell me monthly amount</span>
+                        </button>
+                        <button id="byAmountBtn" class="calc-mode-btn py-3 px-4 border-2 border-gray-300 rounded-lg text-gray-600 font-medium">
+                            I know my budget
+                            <span class="block text-xs font-normal">Tell me when I'll reach it</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- By Date Input -->
+                <div id="byDateInput" class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Target Date</label>
+                    <input type="date" id="targetDate"
+                        class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    <p class="text-sm text-gray-500 mt-1">When do you need the money by?</p>
+                </div>
+
+                <!-- By Amount Input (hidden by default) -->
+                <div id="byAmountInput" class="mb-6 hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Savings Amount</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                        <input type="number" id="monthlySavings" value="500" min="10" step="25"
+                            class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">How much can you save each month?</p>
+                </div>
+
+                <!-- Interest Rate (optional) -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Interest Rate (optional)</label>
+                    <div class="relative">
+                        <input type="number" id="interestRate" value="4.5" min="0" max="15" step="0.1"
+                            class="w-full pr-8 pl-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">APY of your savings account (high-yield savings ~4-5%)</p>
+                </div>
+
+                <button id="calculateBtn" class="w-full mt-4 py-4 bg-primary text-white rounded-lg font-semibold text-lg hover:bg-emerald-700 transition">
+                    Calculate Savings Plan
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-xl font-semibold mb-6">Your Savings Plan</h2>
+
+                <div id="noResults" class="text-center py-12 text-gray-500">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <p>Enter your goal details and click "Calculate" to see your personalized savings plan</p>
+                </div>
+
+                <div id="resultsContent" class="hidden">
+                    <!-- Goal Summary -->
+                    <div class="bg-primary/5 p-4 rounded-lg mb-6">
+                        <div class="text-sm text-gray-600 mb-1">Your Goal</div>
+                        <div class="text-2xl font-bold text-gray-900" id="goalSummary">-</div>
+                    </div>
+
+                    <!-- Key Results -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-primary" id="monthlyAmount">-</div>
+                            <div class="text-sm text-gray-600">Monthly Savings</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-primary" id="targetDateResult">-</div>
+                            <div class="text-sm text-gray-600">Goal Date</div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Stats -->
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="bg-gray-50 p-3 rounded-lg text-center">
+                            <div class="text-xl font-bold text-gray-900" id="totalContributions">-</div>
+                            <div class="text-xs text-gray-600">Your Contributions</div>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded-lg text-center">
+                            <div class="text-xl font-bold text-green-600" id="interestEarned">-</div>
+                            <div class="text-xs text-gray-600">Interest Earned</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg text-center">
+                            <div class="text-xl font-bold text-gray-900" id="totalMonths">-</div>
+                            <div class="text-xs text-gray-600">Months</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Visualization -->
+                    <div class="mb-6">
+                        <h3 class="font-semibold mb-3">Progress Milestones</h3>
+                        <div id="milestones" class="space-y-3">
+                            <!-- Milestones will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Tips Based on Goal -->
+                    <div id="goalTips" class="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6">
+                        <h3 class="font-semibold text-blue-900 mb-2">Tips for Your Goal</h3>
+                        <ul id="tipsList" class="text-sm text-blue-800 space-y-1">
+                            <!-- Tips will be added dynamically -->
+                        </ul>
+                    </div>
+
+                    <!-- Savings Account Recommendation -->
+                    <div class="mt-6 pt-6 border-t">
+                        <h3 class="font-semibold mb-4">Maximize Your Savings</h3>
+                        <div class="space-y-3">
+                            <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="font-medium text-gray-900">High-Yield Savings Accounts</div>
+                                <div class="text-sm text-gray-600">Earn 4-5% APY vs 0.01% at traditional banks</div>
+                            </a>
+                            <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="font-medium text-gray-900">Automated Savings Apps</div>
+                                <div class="text-sm text-gray-600">Set up automatic transfers to reach your goal faster</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Content -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">How to Reach Your Savings Goal Faster</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Automate It</h3>
+                    <p class="text-gray-600">
+                        Set up automatic transfers on payday. You can't spend what you don't see. Even small amounts add up when consistent.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Earn Interest</h3>
+                    <p class="text-gray-600">
+                        High-yield savings accounts offer 4-5% APY. On a $10,000 goal, that's $400-500 in free money you'd miss in a regular account.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Celebrate Milestones</h3>
+                    <p class="text-gray-600">
+                        Hitting 25%, 50%, 75% of your goal deserves recognition. Small celebrations keep you motivated for the long haul.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Goals Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Common Savings Goals</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-3">House Down Payment</h3>
+                    <p class="text-gray-600 mb-3">
+                        Most lenders want 10-20% down. On a $300,000 home, that's $30,000-60,000. Start early and let compound interest help.
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        <strong>Typical goal:</strong> $30,000-60,000 | <strong>Timeline:</strong> 3-5 years
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-3">Emergency Fund</h3>
+                    <p class="text-gray-600 mb-3">
+                        3-6 months of expenses protects you from unexpected job loss, medical bills, or car repairs without going into debt.
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        <strong>Typical goal:</strong> $10,000-25,000 | <strong>Timeline:</strong> 1-2 years
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-3">Dream Vacation</h3>
+                    <p class="text-gray-600 mb-3">
+                        A week in Europe or a cruise can cost $3,000-10,000. Saving in advance means no vacation debt and guilt-free spending.
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        <strong>Typical goal:</strong> $3,000-10,000 | <strong>Timeline:</strong> 6-18 months
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-3">New Car</h3>
+                    <p class="text-gray-600 mb-3">
+                        A larger down payment means lower monthly payments and less interest. Aim for 20% down on a new car.
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        <strong>Typical goal:</strong> $5,000-15,000 | <strong>Timeline:</strong> 1-3 years
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">Where should I keep my savings?</h3>
+                    <p class="text-gray-600">
+                        For goals under 3-5 years, a high-yield savings account is ideal. You'll earn interest while keeping money accessible.
+                        For longer goals, consider CDs or I-bonds for potentially higher returns.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">How does compound interest help?</h3>
+                    <p class="text-gray-600">
+                        Compound interest means you earn interest on your interest. At 4.5% APY, saving $500/month for 2 years gives you
+                        $12,000 in contributions plus ~$550 in interest - money you didn't have to earn.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">What if I can't save the calculated amount?</h3>
+                    <p class="text-gray-600">
+                        Adjust your timeline or goal amount. Saving something is always better than nothing. Even $50/month adds up to
+                        $600/year. You can increase contributions as your income grows.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">Should I save or pay off debt first?</h3>
+                    <p class="text-gray-600">
+                        Generally, build a small emergency fund ($1,000-2,000) first, then attack high-interest debt, then save for other goals.
+                        Use our <a href="debt-payoff.html" class="text-primary hover:underline">Debt Payoff Calculator</a> to create a debt plan.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">SmartMoney Calcs</h4>
+                    <p class="text-sm">Free financial calculators to help you make smarter money decisions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Calculators</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="debt-payoff.html" class="hover:text-white">Debt Payoff Calculator</a></li>
+                        <li><a href="emergency-fund.html" class="hover:text-white">Emergency Fund Calculator</a></li>
+                        <li><a href="freelancer-budget.html" class="hover:text-white">Freelancer Budget Calculator</a></li>
+                        <li><a href="savings-goal.html" class="hover:text-white">Savings Goal Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Disclaimer</h4>
+                    <p class="text-sm">This calculator is for informational purposes only. Consult a financial advisor for personalized guidance.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 SmartMoney Calcs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/savings-goal-calculator.js"></script>
+</body>
+</html>

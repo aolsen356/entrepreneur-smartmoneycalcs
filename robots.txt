@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smartmoneycalcs.pages.dev/sitemap.xml

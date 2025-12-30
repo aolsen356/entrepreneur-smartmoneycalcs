@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Fund Calculator - How Much Should You Save?</title>
+    <meta name="description" content="Free emergency fund calculator. Find out exactly how much you need to save based on your expenses, income stability, and financial situation. Create a savings plan today.">
+    <meta name="keywords" content="emergency fund calculator how much, emergency savings calculator, how much emergency fund, 3 month emergency fund calculator, 6 month emergency fund">
+    <link rel="canonical" href="https://smartmoneycalcs.pages.dev/calculators/emergency-fund.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Emergency Fund Calculator - How Much Should You Save?">
+    <meta property="og:description" content="Calculate your ideal emergency fund size based on your unique situation. Free, no signup required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smartmoneycalcs.pages.dev/calculators/emergency-fund.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#0284c7',
+                        accent: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-emerald-50 to-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../" class="text-2xl font-bold text-primary">SmartMoney Calcs</a>
+            <div class="space-x-6">
+                <a href="../#calculators" class="text-gray-600 hover:text-primary">Calculators</a>
+                <a href="debt-payoff.html" class="text-gray-600 hover:text-primary">Debt Payoff</a>
+                <a href="emergency-fund.html" class="text-primary font-medium">Emergency Fund</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Emergency Fund Calculator</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Find out how much you should have saved and create a realistic plan to build your financial safety net.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-xl font-semibold mb-6">Your Financial Situation</h2>
+
+                <!-- Monthly Expenses -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Monthly Essential Expenses
+                    </label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                        <input type="number" id="monthlyExpenses" value="" min="0" step="100" placeholder="3500"
+                            class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Rent/mortgage, utilities, food, insurance, minimum debt payments</p>
+                </div>
+
+                <!-- Monthly Income -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Monthly Take-Home Income
+                    </label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                        <input type="number" id="monthlyIncome" value="" min="0" step="100" placeholder="5000"
+                            class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Your net pay after taxes and deductions</p>
+                </div>
+
+                <!-- Current Savings -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Current Emergency Savings
+                    </label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                        <input type="number" id="currentSavings" value="0" min="0" step="100" placeholder="0"
+                            class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Amount you currently have set aside for emergencies</p>
+                </div>
+
+                <!-- Income Stability -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">
+                        Income Stability
+                    </label>
+                    <div class="grid grid-cols-1 gap-3">
+                        <label class="flex items-start p-3 border rounded-lg cursor-pointer hover:border-primary transition income-option">
+                            <input type="radio" name="incomeStability" value="stable" class="mt-1 mr-3" checked>
+                            <div>
+                                <div class="font-medium">Stable</div>
+                                <div class="text-sm text-gray-500">Salaried employee with consistent income</div>
+                            </div>
+                        </label>
+                        <label class="flex items-start p-3 border rounded-lg cursor-pointer hover:border-primary transition income-option">
+                            <input type="radio" name="incomeStability" value="variable" class="mt-1 mr-3">
+                            <div>
+                                <div class="font-medium">Variable</div>
+                                <div class="text-sm text-gray-500">Commission-based, seasonal, or inconsistent hours</div>
+                            </div>
+                        </label>
+                        <label class="flex items-start p-3 border rounded-lg cursor-pointer hover:border-primary transition income-option">
+                            <input type="radio" name="incomeStability" value="selfEmployed" class="mt-1 mr-3">
+                            <div>
+                                <div class="font-medium">Self-Employed / Freelance</div>
+                                <div class="text-sm text-gray-500">Business owner or freelancer with irregular income</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Dependents -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Number of Dependents
+                    </label>
+                    <select id="dependents" class="w-full py-3 px-4 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                        <option value="0">No dependents (just me)</option>
+                        <option value="1">1 dependent</option>
+                        <option value="2">2 dependents</option>
+                        <option value="3">3+ dependents</option>
+                    </select>
+                    <p class="text-sm text-gray-500 mt-1">People who rely on your income (spouse, children, parents)</p>
+                </div>
+
+                <!-- Monthly Savings Amount -->
+                <div class="mb-6 pt-6 border-t">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        How Much Can You Save Monthly?
+                    </label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                        <input type="number" id="monthlySavings" value="" min="0" step="50" placeholder="500"
+                            class="w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Realistic amount you can set aside each month</p>
+                </div>
+
+                <button id="calculateBtn" class="w-full py-4 bg-primary text-white rounded-lg font-semibold text-lg hover:bg-emerald-700 transition">
+                    Calculate My Emergency Fund
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-xl font-semibold mb-6">Your Emergency Fund Plan</h2>
+
+                <div id="noResults" class="text-center py-12 text-gray-500">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <p>Enter your financial details and click "Calculate" to see your personalized emergency fund plan</p>
+                </div>
+
+                <div id="resultsContent" class="hidden">
+                    <!-- Target Display -->
+                    <div class="text-center mb-8 p-6 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl">
+                        <div class="text-sm text-gray-600 mb-1">Your Target Emergency Fund</div>
+                        <div class="text-5xl font-bold text-primary mb-2" id="targetAmount">$0</div>
+                        <div class="text-gray-600" id="monthsCoverage">0 months of expenses</div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="text-gray-600">Current Progress</span>
+                            <span class="font-medium" id="progressPercent">0%</span>
+                        </div>
+                        <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                            <div id="progressBar" class="h-full bg-gradient-to-r from-primary to-emerald-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm mt-2">
+                            <span class="text-gray-500">$0</span>
+                            <span class="text-gray-500" id="targetLabel">$0</span>
+                        </div>
+                    </div>
+
+                    <!-- Key Stats -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-gray-900" id="amountNeeded">$0</div>
+                            <div class="text-sm text-gray-600">Still Needed</div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-gray-900" id="timeToGoal">0 months</div>
+                            <div class="text-sm text-gray-600">To Reach Goal</div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendation Box -->
+                    <div id="recommendationBox" class="p-4 rounded-lg mb-6">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" id="recommendationIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div>
+                                <div class="font-medium mb-1" id="recommendationTitle">Recommendation</div>
+                                <div class="text-sm" id="recommendationText">Your personalized recommendation will appear here.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Savings Milestones -->
+                    <h3 class="font-semibold mb-4">Savings Milestones</h3>
+                    <div id="milestones" class="space-y-3">
+                        <!-- Milestones will be populated here -->
+                    </div>
+
+                    <!-- Where to Keep Your Fund -->
+                    <div class="mt-8 pt-6 border-t">
+                        <h3 class="font-semibold mb-4">Where to Keep Your Emergency Fund</h3>
+                        <div class="space-y-3">
+                            <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="font-medium text-gray-900">High-Yield Savings Account</div>
+                                <div class="text-sm text-gray-600">Earn 4-5% APY while keeping funds accessible. Compare rates from top banks.</div>
+                            </a>
+                            <a href="#" class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="font-medium text-gray-900">Money Market Account</div>
+                                <div class="text-sm text-gray-600">Higher rates with check-writing ability for quick access.</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Content -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">How Much Emergency Fund Do You Really Need?</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-2xl">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">3 Months</h3>
+                    <p class="text-gray-600 mb-4">The minimum recommended baseline for most people.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>Stable job with good job security</li>
+                        <li>Dual-income household</li>
+                        <li>No dependents</li>
+                        <li>Low monthly expenses</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border-2 border-primary">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-2xl text-primary font-bold">6</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-2">6 Months <span class="text-sm font-normal text-gray-500">(Recommended)</span></h3>
+                    <p class="text-gray-600 mb-4">The standard goal for most financial situations.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>Single income household</li>
+                        <li>1-2 dependents</li>
+                        <li>Moderate job security</li>
+                        <li>Some variable expenses</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-2xl text-red-600">12</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">9-12 Months</h3>
+                    <p class="text-gray-600 mb-4">Extra protection for higher-risk situations.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>Self-employed or freelance</li>
+                        <li>Single parent</li>
+                        <li>Industry with layoff risk</li>
+                        <li>Health conditions requiring care</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Emergency Fund FAQs</h2>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">What counts as an emergency?</h3>
+                    <p class="text-gray-600">
+                        True emergencies include job loss, major medical expenses, urgent home or car repairs, and unexpected essential travel.
+                        Sales, vacations, and non-urgent purchases are NOT emergencies. Having a clear definition helps you avoid dipping into your fund unnecessarily.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">Should I pay off debt or build an emergency fund first?</h3>
+                    <p class="text-gray-600">
+                        Start with a small starter emergency fund of $1,000-2,000 to avoid going deeper into debt for small emergencies.
+                        Then focus on paying off high-interest debt. Once debt is paid off, build your full emergency fund.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">Where should I keep my emergency fund?</h3>
+                    <p class="text-gray-600">
+                        Keep it in a high-yield savings account (HYSA) separate from your regular checking. This earns interest while keeping funds
+                        accessible within 1-2 business days. Avoid CDs or investments that have withdrawal penalties or market risk.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">How do I start if I can't save much?</h3>
+                    <p class="text-gray-600">
+                        Start small - even $25-50 per paycheck adds up. Automate transfers so you don't have to think about it.
+                        Look for one-time windfalls (tax refunds, bonuses, gifts) to boost your fund. Every dollar counts.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="font-semibold text-lg mb-2">What if I use some of my emergency fund?</h3>
+                    <p class="text-gray-600">
+                        That's exactly what it's for! Don't feel guilty. After the emergency passes, make rebuilding your fund a top priority.
+                        Redirect the money you were saving toward debt or other goals back to your emergency fund until it's replenished.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">SmartMoney Calcs</h4>
+                    <p class="text-sm">Free financial calculators to help you make smarter money decisions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Calculators</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="debt-payoff.html" class="hover:text-white">Debt Payoff Calculator</a></li>
+                        <li><a href="emergency-fund.html" class="hover:text-white">Emergency Fund Calculator</a></li>
+                        <li><span class="text-gray-500">Freelancer Budget (Coming Soon)</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Disclaimer</h4>
+                    <p class="text-sm">This calculator is for informational purposes only. Consult a financial advisor for personalized guidance.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 SmartMoney Calcs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/emergency-fund-calculator.js"></script>
+</body>
+</html>
