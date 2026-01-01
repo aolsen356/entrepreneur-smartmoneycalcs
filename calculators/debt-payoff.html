@@ -14,6 +14,9 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://smartmoneycalcs.pages.dev/calculators/debt-payoff.html">
 
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -205,6 +208,21 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <span class="text-green-800 font-medium">With your extra payment, you save <span id="interestSaved" class="font-bold">$0</span> in interest!</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Charts -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold mb-4">Payoff Visualization</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Cost Breakdown Pie Chart -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <canvas id="costBreakdownChart" height="200"></canvas>
+                            </div>
+                            <!-- Balance Over Time Line Chart -->
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <canvas id="balanceTimelineChart" height="200"></canvas>
+                            </div>
                         </div>
                     </div>
 

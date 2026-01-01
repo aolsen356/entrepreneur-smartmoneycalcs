@@ -4,6 +4,8 @@
 let debts = [];
 let debtIdCounter = 0;
 let strategy = 'avalanche';
+let costBreakdownChart = null;
+let balanceTimelineChart = null;
 
 // DOM Elements
 const debtList = document.getElementById('debtList');
@@ -226,6 +228,12 @@ function displayResults(result, baseline, extraPayment) {
     noResults.classList.add('hidden');
     resultsContent.classList.remove('hidden');
 
+    // Calculate total principal for charts
+    const totalPrincipal = result.debts.reduce((sum, d) => sum + d.originalBalance, 0);
+
+    // Create visualizations
+    createCharts(result, totalPrincipal);
+
     // Calculate payoff date
     const payoffDate = new Date();
     payoffDate.setMonth(payoffDate.getMonth() + result.months);
@@ -300,4 +308,162 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Chart.js visualizations
+function createCharts(result, totalPrincipal) {
+    // Destroy existing charts if they exist
+    if (costBreakdownChart) {
+        costBreakdownChart.destroy();
+    }
+    if (balanceTimelineChart) {
+        balanceTimelineChart.destroy();
+    }
+
+    // Create cost breakdown pie chart
+    const costBreakdownCtx = document.getElementById('costBreakdownChart');
+    if (costBreakdownCtx) {
+        costBreakdownChart = new Chart(costBreakdownCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Principal', 'Interest'],
+                datasets: [{
+                    data: [totalPrincipal, result.totalInterest],
+                    backgroundColor: [
+                        'rgba(5, 150, 105, 0.8)',
+                        'rgba(239, 68, 68, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(5, 150, 105, 1)',
+                        'rgba(239, 68, 68, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Total Cost Breakdown',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${context.label}: ${formatCurrency(value)} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Create balance timeline chart
+    const balanceTimelineCtx = document.getElementById('balanceTimelineChart');
+    if (balanceTimelineCtx) {
+        // Generate timeline data
+        const timelineData = generateBalanceTimeline(result);
+
+        balanceTimelineChart = new Chart(balanceTimelineCtx, {
+            type: 'line',
+            data: {
+                labels: timelineData.labels,
+                datasets: [{
+                    label: 'Remaining Balance',
+                    data: timelineData.balances,
+                    borderColor: 'rgba(5, 150, 105, 1)',
+                    backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Balance Over Time',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return formatCurrency(context.parsed.y);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value / 1000).toFixed(0) + 'k';
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Months'
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+
+function generateBalanceTimeline(result) {
+    const labels = [];
+    const balances = [];
+
+    // Get initial total balance from debts
+    let totalBalance = result.debts.reduce((sum, d) => sum + d.originalBalance, 0);
+
+    // Sample every few months to keep chart readable
+    const step = Math.max(1, Math.floor(result.months / 12));
+
+    for (let month = 0; month <= result.months; month += step) {
+        labels.push(month);
+
+        // Calculate remaining balance at this month
+        let remaining = 0;
+        for (const debt of result.debts) {
+            if (!debt.paidOffMonth || month < debt.paidOffMonth) {
+                // Approximate remaining balance using linear interpolation
+                const monthsToPayoff = debt.paidOffMonth || result.months;
+                const progress = month / monthsToPayoff;
+                remaining += debt.originalBalance * (1 - Math.min(progress, 1));
+            }
+        }
+        balances.push(Math.max(0, remaining));
+    }
+
+    // Ensure we end at zero
+    if (labels[labels.length - 1] !== result.months) {
+        labels.push(result.months);
+        balances.push(0);
+    }
+
+    return { labels, balances };
 }
