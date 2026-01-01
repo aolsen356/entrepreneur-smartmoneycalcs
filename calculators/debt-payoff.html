@@ -30,6 +30,73 @@
         }
     </script>
     <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- WebApplication Schema for Calculator -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Debt Payoff Calculator",
+        "url": "https://smartmoneycalcs.pages.dev/calculators/debt-payoff.html",
+        "description": "Free debt payoff calculator with interest. See exactly when you'll be debt-free, compare snowball vs avalanche methods, and calculate total interest savings.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Multiple debt entry support",
+            "Snowball vs avalanche comparison",
+            "Interest savings calculation",
+            "Payoff timeline visualization",
+            "No account required"
+        ]
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is the debt snowball method?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The debt snowball method pays off debts from smallest to largest balance, regardless of interest rate. You make minimum payments on all debts except the smallest, which gets your extra payment. When that's paid off, you roll that payment to the next smallest debt. This method provides psychological wins to keep you motivated."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the debt avalanche method?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The debt avalanche method pays off debts from highest to lowest interest rate. You make minimum payments on all debts except the one with the highest interest rate, which gets your extra payment. This method saves the most money on interest but may take longer to see your first debt paid off."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Which is better: debt snowball or avalanche?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Mathematically, debt avalanche saves more money on interest. However, research shows debt snowball has higher completion rates because the quick wins keep people motivated. If your debts have similar interest rates, snowball is often better. If you have one high-interest debt (like a credit card at 24%), avalanche can save thousands."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I calculate my debt payoff date?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Enter each debt's balance, interest rate, and minimum payment into our calculator. Then enter your total monthly payment (minimums plus extra). The calculator shows your exact payoff date for each debt and total timeline. Adding just $50-100 extra per month can cut years off your payoff date."
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body class="bg-gradient-to-br from-emerald-50 to-white min-h-screen">
     <!-- Header -->
